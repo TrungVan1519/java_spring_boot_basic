@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<title>List Student View</title>
+
+</head>
+<body>
+	<div class="container">
+		<h2 >Danh sách sinh viên </h2>
+		<hr>
+
+		<a th:href="@{/student/show-adding-form}" class="btn btn-primary btn-sm mb-3">
+			Add Student </a>
+
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="itemStudent : ${listStudent}">
+					<td th:text="${itemStudent.firstName}" />
+					<td th:text="${itemStudent.lastName}" />
+					<td th:text="${itemStudent.email}" />
+					<td>
+						<a href="#" class="btn btn-primary btn-sm mb-3"
+						   th:href="@{/student/single-student/{studentId}(studentId = ${itemStudent.id})}">
+							More info
+						</a> 
+						<a href="#" class="btn btn-success btn-sm mb-3"
+						   th:href="@{/student/show-updating-form/{studentId}(studentId = ${itemStudent.id})}">
+							Update
+						</a>
+						<a href="#" class="btn btn-danger btn-sm mb-3"
+						   th:href="@{/student/deleting-student/{studentId}(studentId = ${itemStudent.id})}">
+							Delete
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
